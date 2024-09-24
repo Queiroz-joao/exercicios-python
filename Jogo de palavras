@@ -1,16 +1,28 @@
 import random
 
-# Lista de palavras disponíveis
-palavras = ["python", "javascript", "java", "ruby", "html", "css", "kotlin"]
+palavras = {
+    1:["São Paulo", "Corinthians", "Santos", "Palmeiras"], #TIMES
+    2:["Florianópolis", "Joinville", "Balneário", "Itapema"], #CIDADES
+    3:["Faca", "Garfo", "Caneta", "Papel"], #OBJETOS
+}
+print("Escolha um tema: ")
+print("1: Times de futebol")
+print("2: Cidades")
+print("3: Objetos")
+num = int(input("Digite um numero para escolha do tema: "))
 
-# Escolher uma palavra aleatoriamente da lista
-palavra = random.choice(palavras)
+if num not in palavras: 
+    print("Escolha inválida!!")
+else: 
+    categoria_palavras = palavras[num]
+    palavra = random.choice(categoria_palavras)
 
 # Embaralhando a palavra
 palavra_embaralhada = list(palavra)
 random.shuffle(palavra_embaralhada)
 palavra_embaralhada = ''.join(palavra_embaralhada)
 
+#mostrar palavra embaralhada
 print(f"A palavra embaralhada é: {palavra_embaralhada}")
 
 # Definir as tentativas
