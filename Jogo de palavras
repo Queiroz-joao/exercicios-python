@@ -1,0 +1,19 @@
+import random 
+palavra = ["python", "JavaScript", "CSS", "HTML"]
+palavra_embaralhada= list(palavra)
+random.shuffle(palavra_embaralhada)
+palavra_embaralhada= ''.join(palavra_embaralhada)
+print(f"A palavra embaralhada é:{palavra_embaralhada}")
+tentativas = 5
+for i in range(tentativas):
+    tentativa = input(f"Tentativa {i+1}/{tentativas}:  ")
+    if tentativa == palavra:
+        print("Parabéns você acertou!")
+        break
+    else:
+        print("Você errou TENTE NOVAMENTE!")
+        tentativas_restantes = tentativas - (i+1)
+        print(f"Você ainda tem {tentativas_restantes} tentativas!")
+if tentativa != palavra:
+     print(f"Você errou todas as tentativas e a palavra correta é {palavra}!!")
+            
