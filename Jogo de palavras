@@ -1,19 +1,35 @@
-import random 
-palavra = ["python", "JavaScript", "CSS", "HTML"]
-palavra_embaralhada= list(palavra)
+import random
+
+# Lista de palavras disponíveis
+palavras = ["python", "javascript", "java", "ruby", "html", "css", "kotlin"]
+
+# Escolher uma palavra aleatoriamente da lista
+palavra = random.choice(palavras)
+
+# Embaralhando a palavra
+palavra_embaralhada = list(palavra)
 random.shuffle(palavra_embaralhada)
-palavra_embaralhada= ''.join(palavra_embaralhada)
-print(f"A palavra embaralhada é:{palavra_embaralhada}")
+palavra_embaralhada = ''.join(palavra_embaralhada)
+
+print(f"A palavra embaralhada é: {palavra_embaralhada}")
+
+# Definir as tentativas
 tentativas = 5
+
+# Loop para as tentativas do jogador
 for i in range(tentativas):
-    tentativa = input(f"Tentativa {i+1}/{tentativas}:  ")
+    tentativa = input(f"Tentativa {i+1}/{tentativas}: ")
+    
     if tentativa == palavra:
-        print("Parabéns você acertou!")
+        print("Parabéns! Você acertou a palavra!")
         break
     else:
-        print("Você errou TENTE NOVAMENTE!")
-        tentativas_restantes = tentativas - (i+1)
-        print(f"Você ainda tem {tentativas_restantes} tentativas!")
+        print("Você errou. Tente novamente.")
+    
+    # Decrementa o número de tentativas restantes
+    tentativas_restantes = tentativas - (i + 1)
+    print(f"Você ainda tem {tentativas_restantes} tentativas.")
+
+# Se o loop terminar sem acerto, mostrar a palavra correta
 if tentativa != palavra:
-     print(f"Você errou todas as tentativas e a palavra correta é {palavra}!!")
-            
+    print(f"A palavra correta era: {palavra}")
