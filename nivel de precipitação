@@ -1,0 +1,69 @@
+def analisa_meteorologia(dados):
+    # Inicializando variáveis
+    total_maxima = 0
+    total_minima = 0
+    total_precipitacao = 0
+    dias = len(dados)
+    
+    maior_precipitacao = 0
+    menor_temperatura = float('inf')
+    
+    dia_maior_precipitacao = ''
+    dia_menor_temperatura = ''
+    
+    dias_quente_seco = []
+    
+    for dado in dados:
+        # Dividindo a string e extraindo informações
+        data, info = dado.split(': ')
+        maxima_str = info.split(', ')[0].split('=')[1]
+        minima_str = info.split(', ')[1].split('=')[1]
+        chuva_str = info.split(', ')[2].split('=')[1].replace('mm', '')
+        
+        # Convertendo para float
+        maxima = float(maxima_str)
+        minima = float(minima_str)
+        chuva = float(chuva_str)
+        
+        # Atualizando totais
+        total_maxima += maxima
+        total_minima += minima
+        total_precipitacao += chuva
+        
+        # Verificando o dia com maior precipitação
+        if chuva > maior_precipitacao:
+            maior_precipitacao = chuva
+            dia_maior_precipitacao = data
+        
+        # Verificando o dia com menor temperatura
+        if minima < menor_temperatura:
+            menor_temperatura = minima
+            dia_menor_temperatura = data
+        
+        # Filtrando dias quentes e secos
+        if maxima > 30 and chuva == 0:
+            dias_quente_seco.append(data)
+    
+    # Calculando médias
+    media_maxima = total_maxima / dias
+    media_minima = total_minima / dias
+
+    # Resultados
+    print(f"Média de temperatura máxima do mês: {media_maxima:.2f}°C")
+    print(f"Média de temperatura mínima do mês: {media_minima:.2f}°C")
+    print(f"Dia com maior precipitação: {dia_maior_precipitacao} com {maior_precipitacao}mm")
+    print(f"Dia com menor temperatura: {dia_menor_temperatura} com {menor_temperatura}°C")
+    print(f"Dias com temperatura máxima > 30°C e sem chuva: {', '.join(dias_quente_seco)}")
+
+# Exemplo de uso
+dados_meteorologicos = [
+    "2023-09-01: Máxima=32, Mínima=21, Chuva=0.0mm",
+    "2023-09-02: Máxima=35, Mínima=23, Chuva=0.0mm",
+    "2023-09-03: Máxima=31, Mínima=20, Chuva=10.0mm",
+    "2023-09-04: Máxima=30, Mínima=22, Chuva=5.0mm",
+    "2023-09-05: Máxima=29, Mínima=21, Chuva=0.0mm",
+    "2023-09-06: Máxima=33, Mínima=22, Chuva=0.0mm",
+    "2023-09-07: Máxima=34, Mínima=19, Chuva=0.5mm",
+]
+
+analisa_meteorologia(dados_meteorologicos)
